@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class FirstPersonMove : MonoBehaviour
 {
     [Header("Player's Movement Params")]
-    public Vector3 direction;
-    public float speed;
+    public Vector3 direction; //player's direction, only Vector3 because it's build in
+    public float speed; //speed that we set
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,9 @@ public class FirstPersonMove : MonoBehaviour
         Vector2 inputVector = value.Get<Vector2>();
         //direction = new Vector3(inputVector.x, 0, inputVector.y);
 
-        direction.x = inputVector.x;
-        direction.z = inputVector.y;
+        direction.x = inputVector.x; //x value of 2d vector created in input manager
+        direction.z = inputVector.y; //y value of 2d vector created in input manager
+        //two components of 2D vector mapped to the horizontal plane axes in a 3D vector (x,z)
+        //ignoring y because player does not move along the vertical axis.
     }
 }
