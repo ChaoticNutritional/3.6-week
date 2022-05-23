@@ -8,17 +8,22 @@ public class FirstPersonMove : MonoBehaviour
     [Header("Player's Movement Params")]
     public Vector3 direction; //player's direction, only Vector3 because it's build in
     public float speed; //speed that we set
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        Vector3 localDirection = transform.TransformDirection(direction);
+
+        //transform.Translate(direction * speed * Time.deltaTime);
+
+        rb.MovePosition(rb.position + (localDirection * speed * Time.deltaTime));
     }
 
     public void OnPlayerMove(InputValue value)
@@ -31,6 +36,10 @@ public class FirstPersonMove : MonoBehaviour
         direction.x = inputVector.x; //x value of 2d vector created in input manager
         direction.z = inputVector.y; //y value of 2d vector created in input manager
         //two components of 2D vector mapped to the horizontal plane axes in a 3D vector (x,z)
-        //ignoring y because player does not move along the vertical axis.
+        //ignoring y because player does not move along the vertical axis.4
+
+        direction.y = 0f;
+
+        //Debug.Log("Move Key Pressed");
     }
 }

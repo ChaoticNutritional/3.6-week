@@ -56,16 +56,13 @@ public class FirstPersonCamera : MonoBehaviour
         Vector2 inputVector = value.Get<Vector2>(); //inputValue objects are part of the InputSystem API.
         deltaX = inputVector.x;
         deltaY = inputVector.y;
-
-        Debug.Log(deltaX + "   " + deltaY);
-        Debug.Log(xRot + "    " + yRot);
     }
 
     public float yWrapper(float yRot)
     {
         if(yRot >= 360 || yRot <= -360)
         {
-            Debug.Log("i've been summoned");
+            //Debug.Log("i've been summoned");
             return 0;
         }
         else
